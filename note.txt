@@ -1,0 +1,10 @@
+{
+...
+  "scripts": {
+    ....
+    "deploy": "firebase deploy" //alias of firebase deploy, usage npm run deploy
+  }
+}
+
+###set up our project to be deployed to Firebase Hosting
+npm install -S firebase
