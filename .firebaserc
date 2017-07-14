@@ -1,5 +1,6 @@
 {
   "projects": {
-    "ingtara": "ingtara-4054e"
+    "ingtara": "ingtara-4054e",
+    "default": "ingtara-4054e"
   }
 }
