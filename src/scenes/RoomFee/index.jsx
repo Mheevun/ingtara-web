@@ -1,17 +1,31 @@
-import React, {Component} from 'react'
-import Table from "react-bootstrap/es/Table"
-import Panel from "react-bootstrap/es/Panel"
-import {connect} from 'react-redux'
-import {bindActionCreators} from 'redux'
-// import {push} from 'react-router-redux'
-import {fetchContracts, requestRoomInfo} from "./action"
-import Contracts from "../Contracts"
-import Items from "../Items"
+import React, {Component} from "react";
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import {fetchFees, requestRoomInfo} from "./action";
+import Contracts from "../Contracts";
+import Items from "../Items";
+import {BootstrapTable, TableHeaderColumn} from "react-bootstrap-table";
+import {monthNumToName} from "../../helper/month-name-number-conversion";
+import Row from "react-bootstrap/es/Row";
+import Grid from "react-bootstrap/es/Grid";
+import Panel from "react-bootstrap/es/Panel";
+import Well from "react-bootstrap/es/Well";
+import ButtonToolbar from "react-bootstrap/es/ButtonToolbar";
 
+const items = [
+    {id: 1, name: "Item name 1", price: 100},
+    {id: 2, name: "Item name 2", price: 100},
+    {id: 3, name: "Item name 3", price: 100},
+]
+const cellEditProp = {
+    mode: 'click',
+    blurToSave: true
+}
 
 class RoomFee extends Component {
-    componentWillMount(){
-        this.props.fetchContracts()
+    componentWillMount() {
+        const month = this.props.month
+        this.props.fetchFees(month)
     }
 
     componentWillReceiveProps(nextProps) {
@@ -19,69 +33,63 @@ class RoomFee extends Component {
     }
 
     render() {
+        const monthName = monthNumToName(this.props.month)
+        const fees = this.props.fees
         return (<div>
-                <p>Room Id: {this.props.roomId}</p>
-                <Panel header="Room Fee" className="text-center" bsStyle="primary">
-                    <Table striped bordered condensed hover>
-                        <thead>
-                        <tr>
-                            <th rowSpan="2" colSpan="1">Room</th>
-                            <th rowSpan="2" colSpan="1">Date</th>
-                            <th rowSpan="2" colSpan="1">Occupant</th>
-                            <th rowSpan="2" colSpan="1">Price</th>
-                            <th rowSpan="1" colSpan="3">Water Unit</th>
-                            <th rowSpan="1" colSpan="3">Electric Unit</th>
-                            <th rowSpan="2" colSpan="1">Others</th>
-                            <th rowSpan="2" colSpan="1">Price Total</th>
-                            <th rowSpan="2" colSpan="1">Note</th>
-                        </tr>
-                        <tr>
-                            <th rowSpan="1" colSpan="1">Old Water Unit</th>
-                            <th rowSpan="1" colSpan="1">New Water Unit</th>
-                            <th rowSpan="1" colSpan="1">Water Price (Baht)</th>
-                            <th rowSpan="1" colSpan="1">Old Electric Unit</th>
-                            <th rowSpan="1" colSpan="1">New Electric Unit</th>
-                            <th rowSpan="1" colSpan="1">Electric Price (Baht)</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td onClick={() => this.props.requestRoomInfo('301')}> 301</td>
-                            <td> DD/MM/YYYY</td>
-                            <td> Name</td>
-                            <td> xxxx</td>
-                            <td> xxxx</td>
-                            <td> xxxx</td>
-                        </tr>
-                        <tr>
-                            <td> 302</td>
-                            <td> DD/MM/YYYY</td>
-                            <td> Name</td>
-                            <td> xxxx</td>
-                            <td> xxxx</td>
-                            <td> xxxx</td>
-                        </tr>
-                        </tbody>
-                    </Table>
-                </Panel>
-                <Contracts/>
-                <Items/>
+                <p>Month: {monthName}</p>
+                <BootstrapTable data={ fees } striped hover cellEdit={ cellEditProp }>
+                    <TableHeaderColumn dataAlign='center' row='0' rowSpan='2' dataField='id' isKey
+                                       hidden>ID</TableHeaderColumn>
+                    <TableHeaderColumn dataAlign='center' row='0' rowSpan='2'
+                                       dataField='name'>Name</TableHeaderColumn>
+                    <TableHeaderColumn dataAlign='center' row='0' rowSpan='2'
+                                       dataField='contractor'>Contractor</TableHeaderColumn>
+                    <TableHeaderColumn dataAlign='center' row='0' rowSpan='2' dataField='room_price'>Room
+                        Price</TableHeaderColumn>
+
+                    <TableHeaderColumn dataAlign='center' row='0' colSpan='3'>Water</TableHeaderColumn>
+                    <TableHeaderColumn dataAlign='center' row='1' dataField='water_old_unit'>Old
+                        Unit</TableHeaderColumn>
+                    <TableHeaderColumn dataAlign='center' row='1' dataField='water_new_unit'>New
+                        Unit</TableHeaderColumn>
+                    <TableHeaderColumn dataAlign='center' row='1' dataField='water_price'>Price</TableHeaderColumn>
+
+                    <TableHeaderColumn dataAlign='center' row='0' colSpan='3'>Electric</TableHeaderColumn>
+                    <TableHeaderColumn dataAlign='center' row='1' dataField='electric_old_unit'>Old
+                        Unit</TableHeaderColumn>
+                    <TableHeaderColumn dataAlign='center' row='1' dataField='electric_new_unit'>New
+                        Unit</TableHeaderColumn>
+                    <TableHeaderColumn dataAlign='center' row='1'
+                                       dataField='electric_price'>Price</TableHeaderColumn>
+
+                    <TableHeaderColumn dataAlign='center' row='0' rowSpan='2'
+                                       dataField='others'>Others</TableHeaderColumn>
+                    <TableHeaderColumn dataAlign='center' row='0' rowSpan='2'
+                                       dataField='total'>Total</TableHeaderColumn>
+                    <TableHeaderColumn dataAlign='center' row='0' rowSpan='2'
+                                       dataField='note'>Note</TableHeaderColumn>
+                </BootstrapTable>
+                <Items />
             </div>
         )
     }
-
-
 }
+
+RoomFee.defaultProps = {
+    month: new Date().getMonth(),
+    fees: items
+}
+
 
 const mapStateToProps = state => ({
     roomId: state.roomFeeReducer.roomId,
     isLoading: state.roomFeeReducer.isLoading,
-    contracts: state.roomFeeReducer.contracts,
+    fees: state.roomFeeReducer.fees,
     error: state.roomFeeReducer.error
 })
 const mapDispatchToProps = dispatch => bindActionCreators({
     requestRoomInfo,
-    fetchContracts,
+    fetchFees,
 }, dispatch)
 export default connect(
     mapStateToProps,

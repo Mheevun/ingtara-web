@@ -6,10 +6,6 @@ import {createContract} from "./action"
 import FormItem from "./components/FormItem"
 
 class Contracts extends React.Component {
-    constructor(props) {
-        super(props)
-    }
-
     btnStyle = {
         marginTop: '10px'
     }

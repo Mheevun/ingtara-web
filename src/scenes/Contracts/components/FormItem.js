@@ -6,10 +6,10 @@ import FormControl from "react-bootstrap/es/FormControl"
 import HelpBlock from "react-bootstrap/es/HelpBlock"
 
 class FormItem extends React.Component {
-    constructor(props){
-        super(props)
-        // this.handleChange = this.handleChange.bind(this);
-    }
+    // constructor(props){
+    //     super(props)
+    //     // this.handleChange = this.handleChange.bind(this);
+    // }
     handleChange(e){
         this.props.onValueChange(e.target.value)
     }

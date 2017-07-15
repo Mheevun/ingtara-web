@@ -8,8 +8,8 @@ import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/catch'
 
 export const REQUEST_ROOM_INFO = 'REQUEST_ROOM_INFO'
-const FETCH_CONTRACTS = 'FETCH_CONTRACTS'
-export const FETCHING_CONTRACTS = 'FETCHING_CONTRACTS'
+const FETCH_FEES = 'FETCH_FEES'
+export const FETCHING_FEES = 'FETCHING_FEES'
 
 export const requestRoomInfo = roomId => {
     return dispatch => {
@@ -20,15 +20,16 @@ export const requestRoomInfo = roomId => {
     }
 }
 
-export const fetchContracts = () => {
+export const fetchFees = (month) => {
     return dispatch => {
         dispatch({
-            type: FETCH_CONTRACTS
+            type: FETCH_FEES,
+            month
         })
     }
 }
 export const fetchContractsEpic = (action$) => {
-    return action$.ofType(FETCH_CONTRACTS)
+    return action$.ofType(FETCH_FEES)
         .mergeMap(() =>
             Observable.fromPromise(contractsRef.once('value'))
                 .startWith(requesting)
@@ -38,7 +39,7 @@ export const fetchContractsEpic = (action$) => {
 }
 
 const requesting = ({isLoading = true, data, error}) => ({
-    type: FETCHING_CONTRACTS,
+    type: FETCHING_FEES,
     isLoading,
     data,
     error
