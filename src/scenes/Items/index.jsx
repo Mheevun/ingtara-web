@@ -5,7 +5,8 @@ import {createItemContract} from "./action"
 import Button from "react-bootstrap/es/Button"
 import Form from "react-bootstrap/es/Form"
 import FormRow from "./components/FormRow/index"
-import Fade from "../../animation/Fade" // ES6
+import Fade from "../../animation/Fade"
+import FormGroup from "react-bootstrap/es/FormGroup"; // ES6
 
 
 class Items extends React.Component {
@@ -23,18 +24,21 @@ class Items extends React.Component {
 
     render() {
         const item = this.item
+        const formStyle = {
+            width: '10px'
+        }
         const form =
             <Fade in={this.state.isEditMode}>
-                <Form horizontal >
-                    <FormRow label="Type" onChange={value => item.type = value}/>
-                    <FormRow label="Name" onChange={value => item.name = value}/>
-                    <FormRow label="Floor" onChange={value => item.floor = value}/>
-                    <FormRow label="Electric Meter" onChange={value => item.electricMeter = value}/>
-                </Form>
+                <form  style={formStyle} >
+                    <FormRow id="ctrlLabel" type="text" label="Type" onChange={value => item.type = value} />
+                    <FormRow id="ctrlName" type="text" label="Name" onChange={value => item.name = value}/>
+                    <FormRow id="ctrlFloor" type="text" label="Floor" onChange={value => item.floor = value}/>
+                    <FormRow id="ctrlElectric" type="text" label="Electric Meter" onChange={value => item.electricMeter = value}/>
+                </form>
             </Fade>
         return (
             <div>
-                <Button style={this.btnStyle} bsStyle="primary"
+                <Button bsStyle="primary"
                         onClick={() => this.toggleForm()}
                 >
                     Create Items
