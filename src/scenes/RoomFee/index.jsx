@@ -1,22 +1,12 @@
-import React, {Component} from "react";
-import {connect} from "react-redux";
-import {bindActionCreators} from "redux";
-import {fetchFees, requestRoomInfo} from "./action";
-import Contracts from "../Contracts";
-import Items from "../Items";
-import {BootstrapTable, TableHeaderColumn} from "react-bootstrap-table";
-import {monthNumToName} from "../../helper/month-name-number-conversion";
-import Row from "react-bootstrap/es/Row";
-import Grid from "react-bootstrap/es/Grid";
-import Panel from "react-bootstrap/es/Panel";
-import Well from "react-bootstrap/es/Well";
-import ButtonToolbar from "react-bootstrap/es/ButtonToolbar";
+import React, {Component} from "react"
+import {connect} from "react-redux"
+import {bindActionCreators} from "redux"
+import {fetchFees, requestRoomInfo} from "./action"
+import {BootstrapTable, TableHeaderColumn} from "react-bootstrap-table"
+import {monthNumToName} from "../../helper/month-name-number-conversion"
+import Toolbar from "./components/Toolbar/index.jsx"
 
-const items = [
-    {id: 1, name: "Item name 1", price: 100},
-    {id: 2, name: "Item name 2", price: 100},
-    {id: 3, name: "Item name 3", price: 100},
-]
+
 const cellEditProp = {
     mode: 'click',
     blurToSave: true
@@ -25,6 +15,7 @@ const cellEditProp = {
 class RoomFee extends Component {
     componentWillMount() {
         const month = this.props.month
+        console.log("RoomFee")
         this.props.fetchFees(month)
     }
 
@@ -35,6 +26,7 @@ class RoomFee extends Component {
     render() {
         const monthName = monthNumToName(this.props.month)
         const fees = this.props.fees
+        console.log("fees: "+fees)
         return (<div>
                 <p>Month: {monthName}</p>
                 <BootstrapTable data={ fees } striped hover cellEdit={ cellEditProp }>
@@ -69,7 +61,7 @@ class RoomFee extends Component {
                     <TableHeaderColumn dataAlign='center' row='0' rowSpan='2'
                                        dataField='note'>Note</TableHeaderColumn>
                 </BootstrapTable>
-                <Items />
+                <Toolbar />
             </div>
         )
     }
@@ -77,7 +69,6 @@ class RoomFee extends Component {
 
 RoomFee.defaultProps = {
     month: new Date().getMonth(),
-    fees: items
 }
 
 

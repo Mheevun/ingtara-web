@@ -2,9 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // import 'bootstrap-material-design/dist/css/bootstrap-material-design.min.css'
 // import 'bootstrap-material-design/dist/css/ripples.min.css'
-
-
-
 import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 // import 'bootstrap/dist/css/bootstrap-theme.min.css'

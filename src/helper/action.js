@@ -1,6 +1,6 @@
 import {Observable} from 'rxjs/Observable'
 
-export const dispatchCreateEvent = eventType =>(item) => {
+export const dispatchCreateEvent = eventType => (item) => {
     return dispatch => {
         dispatch({
             type: eventType,
@@ -9,15 +9,22 @@ export const dispatchCreateEvent = eventType =>(item) => {
     }
 }
 
-export const handlerCreateEvent = (eventType, itemRef) => action$ => {
-    const createResultEvent = createResult(eventType)
-    return action$.ofType(eventType)
-        .mergeMap(() =>
-            Observable.create(emitter => {
-                itemRef.push(action$.contract, error => {
+export const handlerCreateEvent = (filterEventType, resultEvent, itemRef) => (action$) => {
+    const createResultEvent = createResult(resultEvent)
+    return action$
+        .do(action => {
+                console.log("filterEvent: "+filterEventType+", type: "+action.type)
+            }
+        )
+        .ofType(filterEventType)
+        .mergeMap((action) =>
+            Observable.create(observer => {
+                    console.log("create")
+                    itemRef.push(action.item, error => {
                         const isSuccess = !error
-                        emitter.next(createResultEvent({isSuccess, error}))
-                        emitter.complete()
+                        console.log(isSuccess)
+                        observer.next(createResultEvent({isSuccess, error}))
+                        observer.complete()
                     })
                 }
             )

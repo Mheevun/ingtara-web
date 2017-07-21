@@ -20,7 +20,7 @@ export const CREATE_CONTRACT_RESULT = 'CREATE_CONTRACT_RESULT'
 //     }
 // }
 export const createContract = dispatchCreateEvent(CREATE_CONTRACT)
-export const createContractEpic = handlerCreateEvent(CREATE_CONTRACT_RESULT, contractsRef)
+export const createContractEpic = handlerCreateEvent(CREATE_CONTRACT, CREATE_CONTRACT_RESULT, contractsRef)
 // export const createContractEpic = action$ => {
 //     return action$.ofType(CREATE_CONTRACT)
 //         .mergeMap(() =>

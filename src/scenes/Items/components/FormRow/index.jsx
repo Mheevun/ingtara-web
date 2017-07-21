@@ -1,14 +1,10 @@
 import React from "react"
-import FormGroup from "react-bootstrap/es/FormGroup"
-import Col from "react-bootstrap/es/Col"
-import ControlLabel from "react-bootstrap/es/ControlLabel"
-import FormControl from "react-bootstrap/es/FormControl"
 
 
 const FormRow = ({id, label, placeholder, onChange, ...props}) => (
     <div className="form-group">
         <label htmlFor="id">{label}</label>
-        <input type="text" placeholder ={placeholder} onChange={e => onChange(e.target.value)}></input>
+        <input className="form-control" placeholder ={placeholder} onChange={e => onChange(e.target.value)}/>
     </div>
 )
 export default FormRow
