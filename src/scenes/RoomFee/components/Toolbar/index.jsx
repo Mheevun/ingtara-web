@@ -1,6 +1,6 @@
 import React from "react"
 import Button from "react-bootstrap/es/Button"
-import Items from "../../../Items"
+import ItemEdit from "../../../Item/ItemEdit/index";
 
 class Toolbar extends React.Component {
     constructor(props) {
@@ -23,7 +23,7 @@ class Toolbar extends React.Component {
                         Create Items
                     </Button>
                 </div>
-                <Items isEditMode={isEditMode}/>
+                <ItemEdit isEditMode={isEditMode}/>
             </div>
         )
     }

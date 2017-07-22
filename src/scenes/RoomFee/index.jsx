@@ -4,8 +4,8 @@ import {bindActionCreators} from "redux"
 import {fetchFees, requestRoomInfo} from "./action"
 import {BootstrapTable, TableHeaderColumn} from "react-bootstrap-table"
 import {monthNumToName} from "../../helper/month-name-number-conversion"
-import Toolbar from "./components/Toolbar/index.jsx"
-
+import Toolbar from "./components/Toolbar/index"
+import ItemList from "../Item/Items/index";
 
 const cellEditProp = {
     mode: 'click',
@@ -62,6 +62,7 @@ class RoomFee extends Component {
                                        dataField='note'>Note</TableHeaderColumn>
                 </BootstrapTable>
                 <Toolbar />
+                <ItemList/>
             </div>
         )
     }

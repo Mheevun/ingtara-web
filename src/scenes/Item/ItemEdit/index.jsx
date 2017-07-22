@@ -4,17 +4,16 @@ import connect from "react-redux/es/connect/connect"
 import {createItem} from "./action"
 import Form from "react-bootstrap/es/Form"
 import FormRow from "./components/FormRow/index"
-import Fade from "../../animation/Fade"
+import Fade from "../../../animation/Fade"
 import Panel from "react-bootstrap/es/Panel"
-import Button from "react-bootstrap/es/Button" // ES6
+import Button from "react-bootstrap/es/Button"
 
 
-class Items extends React.Component {
+class ItemEditComp extends React.Component {
     constructor(props) {
         super(props)
         this.item = {}
     }
-
 
     render() {
         const item = this.item
@@ -53,7 +52,9 @@ const mapStateToProps = state => ({})
 const mapDispatchToProps = dispatch => bindActionCreators({
     createItem: createItem,
 }, dispatch)
-export default connect(
+const ItemEdit = connect(
     mapStateToProps,
     mapDispatchToProps
-)(Items)
+)(ItemEditComp)
+
+export default ItemEdit
