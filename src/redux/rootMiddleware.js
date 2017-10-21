@@ -2,12 +2,14 @@ import {routerMiddleware}  from 'react-router-redux'
 import {createLogger} from 'redux-logger'
 import thunk from 'redux-thunk'
 import epicMiddleware from './rootEpicMiddleware'
-import createHistory from 'history/createBrowserHistory'
+import { apiMiddleware } from 'redux-api-middleware';
 
-export const history = createHistory()
-export default  [
-    thunk,
-    routerMiddleware(history),
-    createLogger(),
-    epicMiddleware
-]
+export default (history) => {
+    return [
+        thunk,
+        apiMiddleware,
+        routerMiddleware(history),
+        createLogger(),
+        epicMiddleware
+    ]
+}

@@ -1,9 +1,13 @@
 import React, {Component} from 'react'
 import RoomFee from "./scenes/RoomFee/index"
+import Echo from "./service/echo"
 
 class App extends Component {
     render() {
-        return <RoomFee/>
+        return <div>
+            <Echo/>
+            <RoomFee/>
+        </div>
     }
 }
 

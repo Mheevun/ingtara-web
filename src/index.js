@@ -10,8 +10,11 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import Provider from "react-redux/es/components/Provider"
 import ConnectedRouter from "react-router-redux/es/ConnectedRouter"
-import store from './redux/store'
-import {history} from './redux/rootMiddleware'
+import createHistory from 'history/createBrowserHistory'
+import configureStore from './redux/store'
+import {Route, Switch} from "react-router";
+import Login from "./scenes/Login"
+import PrivateRoute from "./scenes/PrivateRoute"
 
 // ReactDOM.render(<App />, document.getElementById('root'));
 const target = document.querySelector('#root')
@@ -19,10 +22,16 @@ const target = document.querySelector('#root')
 //     margin: '10px 10px 10px 10px'
 // }
 
+const history = createHistory()
+const store = configureStore(history)
 ReactDOM.render(
     <Provider store={store}>
         <ConnectedRouter history={history}>
-            <App />
+            {/*<App />*/}
+            <Switch>
+                <Route exact path="/login/" component={Login} />
+                <PrivateRoute path="/" component={App}/>
+            </Switch>
         </ConnectedRouter>
     </Provider>,
     target
