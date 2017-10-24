@@ -12,10 +12,10 @@ import 'rxjs/add/operator/take'
 
 import { createEpicMiddleware } from 'redux-observable'
 import { combineEpics } from 'redux-observable'
-import {fetchFeesEpic} from "../scenes/RoomFee/action"
-import {createContractEpic} from "../scenes/Contracts/action"
-import {createItemContractEpic} from "../scenes/Item/ItemEdit/action"
-import {observeItemsEpic} from "../scenes/Item/Items/action";
+import {fetchFeesEpic} from "../features/RoomFee/action"
+import {createContractEpic} from "../features/Contracts/action"
+import {createItemContractEpic} from "../features/Item/ItemEdit/action"
+import {observeItemsEpic} from "../features/Item/Items/action";
 
 
 const rootEpic = combineEpics(

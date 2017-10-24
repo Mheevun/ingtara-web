@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import RoomFee from "./scenes/RoomFee/index"
-import Echo from "./service/echo"
+import RoomFee from "./features/RoomFee/index"
+import Echo from "./features/Echo"
 
 class App extends Component {
     render() {

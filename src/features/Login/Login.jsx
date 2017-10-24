@@ -2,8 +2,8 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router'
 import LoginForm from "./components/LoginForm";
-import {authErrors, isAuthenticated} from "../../service/auth/auth";
-import {login} from "../../service/auth/action";
+import {login} from "./loginAction";
+import {authErrors, isAuthenticated} from "./loginSelector";
 
 
 const Login = (props) => {

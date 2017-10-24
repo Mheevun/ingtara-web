@@ -1,13 +1,13 @@
 import jwtDecode from 'jwt-decode'
-import * as auth from "./action";
+import * as auth from "./loginAction";
 
 const initialState = {
     access: undefined,
     refresh: undefined,
     errors: {},
 }
-export default (state=initialState, action) => {
-    switch(action.type) {
+export default (state = initialState, action) => {
+    switch (action.type) {
         case auth.LOGIN_SUCCESS:
             return {
                 access: {

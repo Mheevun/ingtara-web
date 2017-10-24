@@ -11,10 +11,10 @@ import registerServiceWorker from './registerServiceWorker';
 import Provider from "react-redux/es/components/Provider"
 import ConnectedRouter from "react-router-redux/es/ConnectedRouter"
 import createHistory from 'history/createBrowserHistory'
-import configureStore from './redux/store'
+import configureStore from './duck/store'
 import {Route, Switch} from "react-router";
-import Login from "./scenes/Login"
-import PrivateRoute from "./scenes/PrivateRoute"
+import Login from "./features/Login/Login"
+import PrivateRoute from "./features/PrivateRoute/index"
 
 // ReactDOM.render(<App />, document.getElementById('root'));
 const target = document.querySelector('#root')
