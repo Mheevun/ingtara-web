@@ -1,6 +1,6 @@
 import React from "react"
-import Button from "react-bootstrap/es/Button"
 import ItemEdit from "../../../Item/ItemEdit/index";
+import {Button} from "reactstrap";
 
 class Toolbar extends React.Component {
     constructor(props) {

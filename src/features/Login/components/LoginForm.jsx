@@ -1,9 +1,8 @@
-import React, {Component} from 'react'
-import {Button, Jumbotron, Form} from 'reactstrap';
+import React from 'react'
+import {Button, Jumbotron, Form, Alert} from 'reactstrap';
 import TextInput from './TextInput'
-import Alert from "react-bootstrap/es/Alert"
 
-export default class LoginForm extends Component {
+export default class LoginForm extends React.Component {
     state = {
         username: '',
         password: ''

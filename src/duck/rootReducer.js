@@ -4,10 +4,10 @@ import roomFeeReducer from "../features/RoomFee/reducer"
 import dataReducer from "../data/reducer"
 import itemListReducer from "../features/Item/Items/reducer";
 import echoReducer from "../features/Echo/reducer";
-import authReducer from "../features/Login/loginReducer";
+import loginReducer from "../features/Login/loginReducer";
 
 export default combineReducers({
-    auth: authReducer,
+    auth: loginReducer,
     echo: echoReducer,
     router: routerReducer,
     roomFeeReducer,

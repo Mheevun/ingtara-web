@@ -1,12 +1,10 @@
 import React from "react"
-import bindActionCreators from "redux/es/bindActionCreators"
-import connect from "react-redux/es/connect/connect"
 import {createItem} from "./action"
-import Form from "react-bootstrap/es/Form"
 import FormRow from "./components/FormRow/index"
 import Fade from "../../../animation/Fade"
-import Panel from "react-bootstrap/es/Panel"
-import Button from "react-bootstrap/es/Button"
+import {Button, Card, Form} from "reactstrap";
+import {bindActionCreators} from "redux";
+import {connect} from "react-redux";
 
 
 class ItemEditComp extends React.Component {
@@ -20,7 +18,7 @@ class ItemEditComp extends React.Component {
         const isEditMode = this.props.isEditMode
         const form =
             <Fade in={isEditMode}>
-                <Panel className="form">
+                <Card className="form">
                     <Form>
                         <FormRow id="ctrlLabel" type="text" label="Type" onChange={value => item.type = value}/>
                         <FormRow id="ctrlName" type="text" label="Name" onChange={value => item.name = value}/>
@@ -31,7 +29,7 @@ class ItemEditComp extends React.Component {
                             Submit
                         </Button>
                     </Form>
-                </Panel>
+                </Card>
             </Fade>
         return (
             <div>
